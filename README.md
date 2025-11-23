@@ -170,6 +170,7 @@ WHERE id = 'a1';
 🗑 5. SCRIPT — DELETE
 
 -- Deletar agendamento
+
 DELETE FROM appointments
 WHERE id = 'a2';
 
