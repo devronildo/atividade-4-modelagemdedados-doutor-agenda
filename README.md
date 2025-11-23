@@ -20,6 +20,7 @@ Um paciente agenda N consultas
 Um médico realiza N consultas
 
 🧱 1. SCRIPT — CREATE TABLES (DDL)
+
 CREATE TABLE clinics (
   id VARCHAR(50) PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -69,6 +70,7 @@ CREATE TABLE appointments (
 );
 
 🧩 2. SCRIPT — INSERTS (DML)
+
 -- INSERT clinics
 INSERT INTO clinics (id, name, created_at, updated_at)
 VALUES
@@ -99,6 +101,7 @@ VALUES
 
 
 🔍 3. SCRIPT — SELECTS
+
 -- 1. Pacientes da clínica c1
 SELECT *
 FROM patients
@@ -129,6 +132,7 @@ ORDER BY date ASC
 LIMIT 10;
 
 ✏ 4. SCRIPT — UPDATES
+
 -- Atualizar telefone de paciente
 UPDATE patients
 SET phone_number = '11977775555'
@@ -146,11 +150,13 @@ WHERE id = 'a1';
 
 
 🗑 5. SCRIPT — DELETE
+
 -- Deletar agendamento
 DELETE FROM appointments
 WHERE id = 'a2';
 
 -- Deletar paciente (somente se não tiver agendamentos)
+
 DELETE FROM patients
 WHERE id = 'p2';
 
