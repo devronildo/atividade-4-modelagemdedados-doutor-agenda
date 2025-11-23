@@ -19,6 +19,14 @@ Um paciente agenda N consultas
 
 Um médico realiza N consultas
 
+# 🚀 Como executar
+
+1. Abra o **MySQL Workbench**
+2. Crie um schema (por exemplo):  
+   ```sql
+   CREATE DATABASE clinica;
+   USE clinica;
+   
 🧱 1. SCRIPT — CREATE TABLES (DDL)
 
 CREATE TABLE clinics (
@@ -72,18 +80,21 @@ CREATE TABLE appointments (
 🧩 2. SCRIPT — INSERTS (DML)
 
 -- INSERT clinics
+
 INSERT INTO clinics (id, name, created_at, updated_at)
 VALUES
   ('c1', 'Clínica Central', NOW(), NOW()),
   ('c2', 'Clínica Popular', NOW(), NOW());
 
 -- INSERT patients
+
 INSERT INTO patients (id, name, email, phone_number, sex, created_at, updated_at, clinic_id)
 VALUES
   ('p1', 'Maria Silva', 'maria@email.com', '11988887777', 'F', NOW(), NOW(), 'c1'),
   ('p2', 'João Souza', 'joao@email.com', '11999996666', 'M', NOW(), NOW(), 'c1');
 
 -- INSERT doctors
+
 INSERT INTO doctors (
   id, clinic_id, name, avatar_image_url, specialty, 
   appointment_price_in_cents, available_from_week_day, available_to_week_day, 
@@ -103,12 +114,14 @@ VALUES
 🔍 3. SCRIPT — SELECTS
 
 -- 1. Pacientes da clínica c1
+
 SELECT *
 FROM patients
 WHERE clinic_id = 'c1'
 ORDER BY name;
 
 -- 2. Agendamentos com nome do paciente e do médico
+
 SELECT 
     a.id AS appointment_id,
     p.name AS patient,
@@ -120,11 +133,13 @@ JOIN doctors d ON a.doctor_id = d.id
 ORDER BY a.date;
 
 -- 3. Médicos especialistas em Dermatologia
+
 SELECT name, specialty
 FROM doctors
 WHERE specialty = 'Dermatologia';
 
 -- 4. Próximos agendamentos
+
 SELECT *
 FROM appointments
 WHERE date > NOW()
@@ -134,16 +149,19 @@ LIMIT 10;
 ✏ 4. SCRIPT — UPDATES
 
 -- Atualizar telefone de paciente
+
 UPDATE patients
 SET phone_number = '11977775555'
 WHERE id = 'p1';
 
 -- Atualizar horário do médico
+
 UPDATE doctors
 SET available_from_time = '09:00'
 WHERE id = 'd1';
 
 -- Remarcar agendamento
+
 UPDATE appointments
 SET date = '2025-02-15 11:00:00'
 WHERE id = 'a1';
@@ -161,5 +179,6 @@ DELETE FROM patients
 WHERE id = 'p2';
 
 -- Deletar médico (somente se não tiver agendamentos)
+
 DELETE FROM doctors
 WHERE id = 'd2';
